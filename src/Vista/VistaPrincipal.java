@@ -6,7 +6,7 @@ package Vista;
 
 /**
  *
- * @author Maryi Lazo
+ * @author Maryi 
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
@@ -17,6 +17,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         initComponents();
         Opciones.addTab("Categorias", new VistaCategorias());
         Opciones.addTab("Productos", new VistaProductos());
+        Opciones.addTab("Clientes", new VistaClientes());
+        Opciones.addTab("Compras", new VistaCompras());
+        Opciones.addTab("Usuarios", new VistaUsuarios());
+        Opciones.addTab("Empleados", new VistaEmpleados());
+        Opciones.addTab("Ventas", new VistaVentas());
     }
 
     /**
