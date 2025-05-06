@@ -3,34 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/DetalleVenta.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Compra.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/DetalleVentaControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Cliente.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/ClienteDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/DetalleCompraDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/EmpleadoControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/DetalleCompra.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Producto.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Util/ConexionDB.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/DetalleVentaDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/DetalleCompraControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/EmpleadoDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/VentaControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/ProductoControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Categoria.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/CompraControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/CategoriaDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/ProductoDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/UsuarioControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Empleado.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/ClienteControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Usuario.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/VentaDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Controlador/CategoriaControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/DAO/CompraDAO.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Downloads/Ferreteria_MVC/Ferreteria_MVC/src/Modelo/Venta.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaVentas.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaCategorias.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/DAO/CategoriaDAO.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Categoria.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaProductos.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/DetalleCompra.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaPrincipal.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Compra.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaCompras.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaEmpleados.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Venta.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaUsuarios.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Producto.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaClientes.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Usuario.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Empleado.java</file>
         </group>
     </open-files>
 </project-private>
