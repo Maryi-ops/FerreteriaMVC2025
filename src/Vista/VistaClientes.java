@@ -1,18 +1,48 @@
-
 package Vista;
+
+import Controlador.ClienteControlador;
+import Modelo.Cliente;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Maryi 
+ * @author Maryi
  */
 public class VistaClientes extends javax.swing.JPanel {
+
+    private final ClienteControlador clienteControlador;
+    private Integer idClienteSeleccionada = null;
 
     /**
      * Creates new form VistaCategorias
      */
     public VistaClientes() {
         initComponents();
-        
+        this.clienteControlador = new ClienteControlador();
+        cargarDatosTabla();
+    }
+
+    private void cargarDatosTabla() {
+        List<Cliente> clientes = clienteControlador.obtenerTodosClientes();
+        if (clientes != null) {
+            DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
+            model.setRowCount(0);
+
+            for (Cliente cli : clientes) {
+                Object[] row = {
+                    cli.getIdCliente(),
+                    cli.getPrimerNombre(),
+                    cli.getSegundoNombre(),
+                    cli.getPrimerApellido(),
+                    cli.getSegundoApellido(),
+                    cli.getCelular(),
+                    cli.getDireccion(),
+                    cli.getCedula()
+                };
+                model.addRow(row);
+            }
+        }
     }
 
     /**
@@ -25,100 +55,133 @@ public class VistaClientes extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        segundoNombre = new javax.swing.JTextField();
+        textSegundoNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        primerNombre = new javax.swing.JTextField();
-        jButton1Guardar = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2Buscar = new javax.swing.JButton();
-        jButton3Eliminar = new javax.swing.JButton();
-        jButton4Actualizar = new javax.swing.JButton();
+        textPrimerNombre = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        textBuscar = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1Clientes = new javax.swing.JTable();
+        TablaClientes = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        primerApellido = new javax.swing.JTextField();
+        textPrimerApellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        segundoApellido = new javax.swing.JTextField();
+        textSegundoApellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        celular = new javax.swing.JTextField();
-        direccion = new javax.swing.JTextField();
+        textCelular = new javax.swing.JTextField();
+        textDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        cedula = new javax.swing.JTextField();
+        textCedula = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel1.setText("Primer Nombre");
 
-        segundoNombre.addActionListener(new java.awt.event.ActionListener() {
+        textSegundoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                segundoNombreActionPerformed(evt);
+                textSegundoNombreActionPerformed(evt);
             }
         });
 
-        jLabel2.setText(" Segundo Nombre");
+        jLabel2.setText("Segundo Nombre");
 
-        primerNombre.addActionListener(new java.awt.event.ActionListener() {
+        textPrimerNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                primerNombreActionPerformed(evt);
+                textPrimerNombreActionPerformed(evt);
             }
         });
 
-        jButton1Guardar.setText("Guardar");
-
-        jButton2Buscar.setText("Buscar");
-        jButton2Buscar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2BuscarActionPerformed(evt);
+                accionBotonGuardar(evt);
             }
         });
 
-        jButton3Eliminar.setText("Eliminar");
-        jButton3Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3EliminarActionPerformed(evt);
+        textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textBuscarKeyTyped(evt);
             }
         });
 
-        jButton4Actualizar.setText("Actualizar");
-        jButton4Actualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActualizarActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
-        jTable1Clientes.setModel(new javax.swing.table.DefaultTableModel(
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accionBotonEliminar(evt);
+            }
+        });
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accionBotonActualizar(evt);
+            }
+        });
+
+        TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idCliente", "primerNombre", "segundoNombre", "primerApellido", "segundoApellido", "celular", "direccion", "cedula"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1Clientes);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaClientes);
 
         jLabel3.setText("Primer Apellido");
 
-        primerApellido.addActionListener(new java.awt.event.ActionListener() {
+        textPrimerApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                primerApellidoActionPerformed(evt);
+                textPrimerApellidoActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Segundo Apellido");
 
-        segundoApellido.addActionListener(new java.awt.event.ActionListener() {
+        textSegundoApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                segundoApellidoActionPerformed(evt);
+                textSegundoApellidoActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Celular");
 
-        direccion.addActionListener(new java.awt.event.ActionListener() {
+        textDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionActionPerformed(evt);
+                textDireccionActionPerformed(evt);
             }
         });
 
@@ -126,156 +189,276 @@ public class VistaClientes extends javax.swing.JPanel {
 
         jLabel7.setText("Cedula");
 
+        jLabel8.setText("Buscar");
+
+        jLabel9.setText("Cedula");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(primerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(575, 575, 575))
+                                .addComponent(jLabel8)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(82, 82, 82))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(primerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jButton2Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(30, 30, 30))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(segundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(264, 264, 264))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(segundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton1Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton3Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(31, 31, 31)
-                                                .addComponent(jButton4Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(33, 33, 33))
+                                    .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(608, 608, 608))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(textPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton1Guardar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(primerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(segundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3Eliminar)
-                            .addComponent(jButton4Actualizar)
-                            .addComponent(jButton2Buscar)
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(primerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(segundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                    .addComponent(textPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel6)
+                    .addComponent(textDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnActualizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void primerNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_primerNombreActionPerformed
+    private void textPrimerNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrimerNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_primerNombreActionPerformed
+    }//GEN-LAST:event_textPrimerNombreActionPerformed
 
-    private void jButton4ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActualizarActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        //  Limpiar(); 
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jButton2BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2BuscarActionPerformed
+    private void textSegundoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSegundoNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2BuscarActionPerformed
+    }//GEN-LAST:event_textSegundoNombreActionPerformed
 
-    private void segundoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segundoNombreActionPerformed
+    private void textPrimerApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrimerApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_segundoNombreActionPerformed
+    }//GEN-LAST:event_textPrimerApellidoActionPerformed
 
-    private void jButton3EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3EliminarActionPerformed
+    private void textSegundoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSegundoApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3EliminarActionPerformed
+    }//GEN-LAST:event_textSegundoApellidoActionPerformed
 
-    private void primerApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_primerApellidoActionPerformed
+    private void textDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_primerApellidoActionPerformed
+    }//GEN-LAST:event_textDireccionActionPerformed
 
-    private void segundoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segundoApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_segundoApellidoActionPerformed
+    private void accionBotonGuardar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonGuardar
+        String primerNombre = textPrimerNombre.getText();
+        String segundoNombre = textSegundoNombre.getText();
+        String primerApellido = textPrimerApellido.getText();
+        String segundoApellido = textSegundoApellido.getText();
+        String celular = textCelular.getText();
+        String direccion = textDireccion.getText();
+        String cedula = textCedula.getText();
 
-    private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionActionPerformed
+        if (!primerNombre.isEmpty() && !segundoNombre.isEmpty() && !primerApellido.isEmpty()
+                && !primerApellido.isEmpty() && !segundoApellido.isEmpty() && !celular.isEmpty()
+                && !direccion.isEmpty() && !cedula.isEmpty()) {
+
+            clienteControlador.crearCliente(primerNombre, segundoNombre, primerApellido,
+                    segundoApellido, celular, direccion, cedula);
+            cargarDatosTabla();
+
+            textPrimerNombre.setText("");
+            textSegundoNombre.setText("");
+            textPrimerApellido.setText("");
+            textSegundoApellido.setText("");
+            textCelular.setText("");
+            textDireccion.setText("");
+            textCedula.setText("");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_accionBotonGuardar
+
+    private void accionBotonEliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonEliminar
+        int filaSeleccionada = TablaClientes.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idCliente = (int) TablaClientes.getValueAt(filaSeleccionada, 0);
+            clienteControlador.eliminarCliente(idCliente);
+            cargarDatosTabla();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila para eleminar.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_accionBotonEliminar
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+
+        if (evt.getClickCount() == 2) {
+            int filaSeleccionada = TablaClientes.getSelectedRow();
+            if (filaSeleccionada != -1) {
+
+                idClienteSeleccionada = (int) TablaClientes.getValueAt(filaSeleccionada, 0);
+                String primerNombre = (String) TablaClientes.getValueAt(filaSeleccionada, 1);
+                String segundoNombre = (String) TablaClientes.getValueAt(filaSeleccionada, 2);
+                String primerApellido = (String) TablaClientes.getValueAt(filaSeleccionada, 3);
+                String segundoApellido = (String) TablaClientes.getValueAt(filaSeleccionada, 4);
+                String celular = (String) TablaClientes.getValueAt(filaSeleccionada, 5);
+                String direccion = (String) TablaClientes.getValueAt(filaSeleccionada, 6);
+                String cedula = (String) TablaClientes.getValueAt(filaSeleccionada, 7);
+
+                textPrimerNombre.setText(primerNombre);
+                textSegundoNombre.setText(segundoNombre);
+                textPrimerApellido.setText(primerApellido);
+                textSegundoApellido.setText(segundoApellido);
+                textCelular.setText(celular);
+                textDireccion.setText(direccion);
+                textCedula.setText(cedula);
+
+                btnEliminar.setEnabled(false);
+                btnGuardar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+    private void accionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonActualizar
+
+        String primerNombre = textPrimerNombre.getText();
+        String segundoNombre = textSegundoNombre.getText();
+        String primerApellido = textPrimerApellido.getText();
+        String segundoApellido = textSegundoApellido.getText();
+        String celular = textCelular.getText();
+        String direccion = textDireccion.getText();
+        String cedula = textCedula.getText();
+
+        if (idClienteSeleccionada != null && !primerNombre.isEmpty() && !segundoNombre.isEmpty()
+                && !primerApellido.isEmpty() && !segundoApellido.isEmpty() && !celular.isEmpty()
+                && !direccion.isEmpty() && !cedula.isEmpty()) {
+
+            clienteControlador.actualizarCliente(idClienteSeleccionada, primerNombre, segundoNombre, primerApellido, segundoApellido, celular, direccion, cedula);
+            cargarDatosTabla();
+
+            textPrimerNombre.setText("");
+            textSegundoNombre.setText("");
+            textPrimerApellido.setText("");
+            textSegundoApellido.setText("");
+            textCelular.setText("");
+            textDireccion.setText("");
+            textCedula.setText("");
+
+            btnEliminar.setEnabled(true);
+            btnGuardar.setEnabled(true);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_accionBotonActualizar
+
+    private void textBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyTyped
+
+        String textoBusqueda = textBuscar.getText().trim().toLowerCase();
+        List<Cliente> clientes = clienteControlador.obtenerTodosClientes();
+
+        DefaultTableModel modelo = (DefaultTableModel) TablaClientes.getModel();
+        modelo.setRowCount(0);
+
+        if (clientes != null) {
+            for (Cliente cli : clientes) {
+                if (textoBusqueda.isEmpty()
+                        || cli.getPrimerNombre().toLowerCase().contains(textoBusqueda)
+                        || cli.getSegundoNombre().toLowerCase().contains(textoBusqueda)
+                        || cli.getPrimerApellido().toLowerCase().contains(textoBusqueda)
+                        || cli.getSegundoApellido().toLowerCase().contains(textoBusqueda)
+                        || cli.getCelular().toLowerCase().contains(textoBusqueda)
+                        || cli.getDireccion().toLowerCase().contains(textoBusqueda)
+                        || cli.getCedula().toLowerCase().contains(textoBusqueda)) {
+                    Object[] fila = {
+                        cli.getIdCliente(),
+                        cli.getPrimerNombre(),
+                        cli.getSegundoNombre(),
+                        cli.getPrimerApellido(),
+                        cli.getSegundoApellido(),
+                        cli.getCelular(),
+                        cli.getDireccion(),
+                        cli.getCedula(),
+                    };
+                    modelo.addRow(fila);
+                }
+            }
+        }
+    }//GEN-LAST:event_textBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cedula;
-    private javax.swing.JTextField celular;
-    private javax.swing.JTextField direccion;
-    private javax.swing.JButton jButton1Guardar;
-    private javax.swing.JButton jButton2Buscar;
-    private javax.swing.JButton jButton3Eliminar;
-    private javax.swing.JButton jButton4Actualizar;
+    private javax.swing.JTable TablaClientes;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -283,12 +466,16 @@ public class VistaClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1Clientes;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField primerApellido;
-    private javax.swing.JTextField primerNombre;
-    private javax.swing.JTextField segundoApellido;
-    private javax.swing.JTextField segundoNombre;
+    private javax.swing.JTextField textBuscar;
+    private javax.swing.JTextField textCedula;
+    private javax.swing.JTextField textCelular;
+    private javax.swing.JTextField textDireccion;
+    private javax.swing.JTextField textPrimerApellido;
+    private javax.swing.JTextField textPrimerNombre;
+    private javax.swing.JTextField textSegundoApellido;
+    private javax.swing.JTextField textSegundoNombre;
     // End of variables declaration//GEN-END:variables
 }
