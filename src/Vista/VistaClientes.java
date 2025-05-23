@@ -14,6 +14,20 @@ public class VistaClientes extends javax.swing.JPanel {
     private final ClienteControlador clienteControlador;
     private Integer idClienteSeleccionada = null;
 
+    private void limpiar() {
+        textPrimerNombre.setText("");
+        textSegundoNombre.setText("");
+        textPrimerApellido.setText("");
+        textSegundoApellido.setText("");
+        textCelular.setText("");
+        textDireccion.setText("");
+        textCedula.setText("");
+        textBuscar.setText("");
+        idClienteSeleccionada = null;
+        btnEliminar.setEnabled(true);
+        btnGuardar.setEnabled(true);
+}  
+    
     /**
      * Creates new form VistaCategorias
      */
@@ -76,7 +90,6 @@ public class VistaClientes extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         textCedula = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         jLabel1.setText("Primer Nombre");
 
@@ -191,8 +204,6 @@ public class VistaClientes extends javax.swing.JPanel {
 
         jLabel8.setText("Buscar");
 
-        jLabel9.setText("Cedula");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,8 +217,7 @@ public class VistaClientes extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,11 +292,8 @@ public class VistaClientes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -297,7 +304,8 @@ public class VistaClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_textPrimerNombreActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        //  Limpiar(); 
+        limpiar(); 
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void textSegundoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSegundoNombreActionPerformed
@@ -467,7 +475,6 @@ public class VistaClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField textBuscar;
     private javax.swing.JTextField textCedula;
