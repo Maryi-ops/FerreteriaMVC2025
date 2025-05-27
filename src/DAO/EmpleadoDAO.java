@@ -40,6 +40,30 @@ public class EmpleadoDAO {
         }
     }
 
+    
+    public Empleado obtenerEmpleadoPorId(int idEmpleado) throws SQLException {
+    String sql = "SELECT * FROM Empleados WHERE id_empleado = ?";
+    Empleado empleado = null;
+
+    try (Connection c = ConexionDB.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
+        stmt.setInt(1, idEmpleado);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                empleado = new Empleado();
+                empleado.setIdEmpleado(rs.getInt("id_empleado"));
+                empleado.setPrimerNombre(rs.getString("primer_nombre"));
+                empleado.setSegundoNombre(rs.getString("segundo_nombre"));
+                empleado.setPrimerApellido(rs.getString("primer_apellido"));
+                empleado.setSegundoApellido(rs.getString("segundo_apellido"));
+                empleado.setCelular(rs.getString("celular"));
+                empleado.setCargo(rs.getString("cargo"));
+                empleado.setFechaContratacion(rs.getDate("fecha_contratacion"));
+            }
+        }
+    }
+    return empleado;
+}
+    
     public List<Empleado> leerTodosEmpleados() throws SQLException {
         String sql = "SELECT * FROM Empleados";
         List<Empleado> empleados = new ArrayList<>();

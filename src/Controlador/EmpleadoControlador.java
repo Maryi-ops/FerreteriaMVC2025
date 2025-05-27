@@ -38,6 +38,16 @@ public class EmpleadoControlador {
         }
     }
 
+     // Obtener un empleado por su ID
+    public Empleado obtenerEmpleadoPorId(int idEmpleado) {
+        try {
+            return empleadoDAO.obtenerEmpleadoPorId(idEmpleado);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el empleado: " + e.getMessage());
+            return null;
+        }
+    }
+    
     // Método para obtener todos los empleados
     public List<Empleado> obtenerTodosEmpleados() {
         try {
