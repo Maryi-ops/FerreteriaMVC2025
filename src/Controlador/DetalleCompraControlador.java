@@ -53,7 +53,7 @@ public class DetalleCompraControlador {
             detalle.setCantidad(cantidad);
             detalle.setPrecioUnitario(precioUnitario);
             detalleCompraDAO.actualizarDetalleCompra(detalle);
-            JOptionPane.showMessageDialog(null, "Detalle de compra actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Detalle de compra actualizado exitosamente.");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el detalle de compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

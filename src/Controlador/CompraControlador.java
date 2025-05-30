@@ -69,7 +69,7 @@ public class CompraControlador {
             compra.setFechaCompra(fechaCompra);
             compra.setTotalCompra(totalCompra);
             compraDAO.actualizarCompra(compra);
-            JOptionPane.showMessageDialog(null, "Compra actualizada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Compra actualizada exitosamente.");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar la compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

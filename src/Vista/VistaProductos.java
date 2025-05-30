@@ -40,7 +40,7 @@ public class VistaProductos extends javax.swing.JPanel {
         this.productoControlador = new ProductoControlador();
         this.categoriaControlador = new CategoriaControlador();
         cargarDatosTabla();
-        cargarDatosTabla();
+        cargarCategorias();
     }
 
     private void cargarDatosTabla() {
@@ -254,6 +254,11 @@ public class VistaProductos extends javax.swing.JPanel {
         jLabel5.setText("Categoria");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Imagen");
 
@@ -529,6 +534,10 @@ public class VistaProductos extends javax.swing.JPanel {
     private void accionBotonLimpiar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonLimpiar
         limpiar();
     }//GEN-LAST:event_accionBotonLimpiar
+
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
