@@ -1,11 +1,19 @@
-
-
 package Vista;
 
 import Controlador.CategoriaControlador;
 import Modelo.Categoria;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
+import java.awt.FileDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,6 +70,7 @@ public class VistaCategorias extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCategorias = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        btnGenerarReporte = new javax.swing.JButton();
 
         jLabel1.setText("Nombre Categorias");
 
@@ -145,6 +154,13 @@ public class VistaCategorias extends javax.swing.JPanel {
 
         jLabel3.setText("Buscar");
 
+        btnGenerarReporte.setText("Generar Reporte");
+        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accionBotonGenerarReporte(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,30 +169,33 @@ public class VistaCategorias extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(NombreCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(DescripcionCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(185, 185, 185))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(0, 9, Short.MAX_VALUE))))
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(NombreCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(DescripcionCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(185, 185, 185))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +208,9 @@ public class VistaCategorias extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NombreCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DescripcionCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(1, 1, 1)
+                .addComponent(btnGenerarReporte)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -259,7 +280,7 @@ public class VistaCategorias extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llena todos los campos", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_accionBotonActualizar
-    
+
     private void texttextBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texttextBuscarKeyTyped
 
         String textoBusqueda = textBuscar.getText().trim().toLowerCase();
@@ -270,9 +291,9 @@ public class VistaCategorias extends javax.swing.JPanel {
 
         if (categorias != null) {
             for (Categoria cat : categorias) {
-                if (textoBusqueda.isEmpty()||
-                    cat.getNombreCategaoria().toLowerCase().contains(textoBusqueda)||
-                    cat.getDescripcionCategaoria().toLowerCase().contains(textoBusqueda)){
+                if (textoBusqueda.isEmpty()
+                        || cat.getNombreCategaoria().toLowerCase().contains(textoBusqueda)
+                        || cat.getDescripcionCategaoria().toLowerCase().contains(textoBusqueda)) {
                     Object[] fila = {
                         cat.getIdCategoria(),
                         cat.getNombreCategaoria(),
@@ -285,7 +306,7 @@ public class VistaCategorias extends javax.swing.JPanel {
     }//GEN-LAST:event_texttextBuscarKeyTyped
 
     private void tablaCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCategoriaMouseClicked
-           
+
         if (evt.getClickCount() == 2) {
 
             int filaSeleccionada = TablaCategorias.getSelectedRow();
@@ -298,13 +319,82 @@ public class VistaCategorias extends javax.swing.JPanel {
 
                 NombreCategorias.setText(nombre);
                 DescripcionCategorias.setText(descripcion);
-                
+
                 btnEliminar.setEnabled(false);
                 btnGuardar.setEnabled(false);
             }
         }
     }//GEN-LAST:event_tablaCategoriaMouseClicked
-    
+
+    private void accionBotonGenerarReporte(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonGenerarReporte
+        try {
+            //Lógica para generar el reporte     
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                    "Error al generar el PDF: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        FileDialog dialogoArchivo = new FileDialog((java.awt.Frame) null, "Guardar Reporte PDF", FileDialog.SAVE);
+        dialogoArchivo.setFile("Reporte de Categorias.pdf");
+        dialogoArchivo.setVisible(true);
+
+        String ruta = dialogoArchivo.getDirectory();
+        String nombreArchivo = dialogoArchivo.getFile();
+
+        if (ruta == null || nombreArchivo == null) {
+            JOptionPane.showMessageDialog(this, "Operación cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
+
+        }
+        String rutaCompleta = ruta + nombreArchivo;
+
+        try {
+            PdfWriter escritor = new PdfWriter(rutaCompleta);
+            PdfDocument pdf = new PdfDocument(escritor);
+            Document documento = new Document(pdf);
+
+            documento.add(new Paragraph("Reporte de Categoria")
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(20)
+                    .setBold());
+
+            documento.add(new Paragraph("Fecha: " + new java.util.Date().toString())
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(12));
+
+            Table tabla = new Table(3);
+            tabla.setWidth(UnitValue.createPercentValue(100));
+            tabla.addHeaderCell("ID Categoria").setBold();
+            tabla.addHeaderCell("Nombre").setBold();
+            tabla.addHeaderCell("Descripción").setBold();
+
+            List<Categoria> listaCategorias = CategoriaControlador.obtenerTodasCategorias();
+            if (listaCategorias != null) {
+                for (Categoria categoria : listaCategorias) {
+                    tabla.addCell(String.valueOf(categoria.getNombreCategaoria()));
+                    tabla.addCell(categoria.getNombreCategaoria());
+                        tabla.addCell(categoria.getDescripcionCategaoria());
+
+                }
+            }
+
+            documento.add(tabla);
+            documento.add(new Paragraph("Notas: Reporte generado automaticamente desde el sistema.")
+                    .setFontSize(10)
+                    .setMarginTop(20));
+
+            documento.close();
+            JOptionPane.showMessageDialog(this, "Reportar PDF generado con exito en:" + rutaCompleta,
+                    "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            System.out.println("Problemas: " + e);
+
+        }
+
+    }//GEN-LAST:event_accionBotonGenerarReporte
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DescripcionCategorias;
@@ -312,6 +402,7 @@ public class VistaCategorias extends javax.swing.JPanel {
     private javax.swing.JTable TablaCategorias;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

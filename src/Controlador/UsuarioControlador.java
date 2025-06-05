@@ -1,8 +1,7 @@
-
 package Controlador;
 
 import DAO.UsuarioDAO;
-import Modelo.Usuario;
+import Modelo.usuario;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,7 +21,7 @@ public class UsuarioControlador {
     // Método para crear un nuevo usuario
     public void crearUsuario(String usuario, String contrasena) {
         try {
-            Usuario user = new Usuario();
+            usuario user = new usuario();
             user.setUsuario(usuario);
             user.setContrasena(contrasena);
             usuarioDAO.crearUsuario(user);
@@ -33,7 +32,7 @@ public class UsuarioControlador {
     }
 
     // Método para obtener todos los usuarios
-    public List<Usuario> obtenerTodosUsuarios() {
+    public List<usuario> obtenerTodosUsuarios() {
         try {
             return usuarioDAO.leerTodosUsuarios();
         } catch (SQLException e) {
@@ -45,7 +44,7 @@ public class UsuarioControlador {
     // Método para actualizar un usuario existente
     public void actualizarUsuario(int idUsuario, String usuario, String contrasena) {
         try {
-            Usuario user = new Usuario();
+            usuario user = new usuario();
             user.setIdUsuario(idUsuario);
             user.setUsuario(usuario);
             user.setContrasena(contrasena);
@@ -74,10 +73,10 @@ public class UsuarioControlador {
         controlador.crearUsuario("ana", "ana2025");
 
         // Leer todos los usuarios
-        List<Usuario> usuarios = controlador.obtenerTodosUsuarios();
+        List<usuario> usuarios = controlador.obtenerTodosUsuarios();
         if (usuarios != null) {
             System.out.println("Lista de usuarios:");
-            for (Usuario u : usuarios) {
+            for (usuario u : usuarios) {
                 System.out.println("ID: " + u.getIdUsuario()
                         + ", Usuario: " + u.getUsuario());
             }
@@ -89,4 +88,21 @@ public class UsuarioControlador {
         // Eliminar un usuario
         controlador.eliminarUsuario(1);
     }
+
+    public usuario validarCredenciales(String usuario, String contrasena) {
+        try {
+            usuario user = usuarioDAO.validarUsuario(usuario, contrasena);
+            if (user != null) {
+                System.out.println("Inicio de sesión exitoso.");
+                return user;
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al validar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+
 }

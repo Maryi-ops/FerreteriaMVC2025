@@ -1,7 +1,7 @@
 
 package DAO;
 
-import Modelo.Usuario;
+import Modelo.usuario;
 import Util.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class UsuarioDAO {
 
-    public void crearUsuario(Usuario usuario) throws SQLException {
+    public void crearUsuario(usuario usuario) throws SQLException {
         String sql = """
         INSERT INTO Usuarios (
             usuario, 
@@ -30,13 +30,13 @@ public class UsuarioDAO {
         }
     }
 
-    public List<Usuario> leerTodosUsuarios() throws SQLException {
+    public List<usuario> leerTodosUsuarios() throws SQLException {
         String sql = "SELECT * FROM Usuarios";
-        List<Usuario> usuarios = new ArrayList<>();
+        List<usuario> usuarios = new ArrayList<>();
 
         try (Connection c = ConexionDB.getConnection(); PreparedStatement stmt = c.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                usuario usuario = new usuario();
                 usuario.setIdUsuario(rs.getInt("id_usuario"));
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setContrasena(rs.getString("contraseña"));
@@ -46,7 +46,7 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    public void actualizarUsuario(Usuario usuario) throws SQLException {
+    public void actualizarUsuario(usuario usuario) throws SQLException {
         String sql = "UPDATE Usuarios SET usuario = ?, contraseña = ? WHERE id_usuario = ?";
 
         try (Connection c = ConexionDB.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
@@ -66,6 +66,21 @@ public class UsuarioDAO {
             stmt.executeUpdate();
         }
     }
+    
+    public usuario validarUsuario(String usuario, String contrasena) throws SQLException {
+    String sql = "SELECT * FROM Usuarios WHERE usuario = ? AND contraseña = ?";
+    try (Connection c = ConexionDB.getConnection(); 
+         PreparedStatement stmt = c.prepareStatement(sql)) {
+        stmt.setString(1, usuario);
+        stmt.setString(2, contrasena);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return new usuario(rs.getInt("id_usuario"), rs.getString("usuario"), rs.getString("contraseña"));
+            }
+        }
+    }
+    return null; // Si no se encuentra coincidencia
+}
 
 // Método Main
     public static void main(String[] args) {
@@ -73,7 +88,7 @@ public class UsuarioDAO {
             UsuarioDAO dao = new UsuarioDAO();
 
             // Actualizar un usuario
-            Usuario usuario = new Usuario();
+            usuario usuario = new usuario();
             usuario.setIdUsuario(1); // ID existente
             usuario.setUsuario("nuevo_usuario");
             usuario.setContrasena("nueva_contraseña");
@@ -85,9 +100,9 @@ public class UsuarioDAO {
             System.out.println("Usuario eliminado.");
 
             // Leer y mostrar todos los usuarios para verificar
-            List<Usuario> usuarios = dao.leerTodosUsuarios();
+            List<usuario> usuarios = dao.leerTodosUsuarios();
             System.out.println("Lista de usuarios:");
-            for (Usuario usu : usuarios) {
+            for (usuario usu : usuarios) {
                 System.out.println("ID: " + usu.getIdUsuario()
                         + ", Usuario: " + usu.getUsuario()
                         + ", Contraseña: " + usu.getContrasena());

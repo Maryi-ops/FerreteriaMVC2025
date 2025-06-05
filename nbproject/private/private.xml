@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Controlador/DetalleCompraControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaCompras.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Controlador/CompraControlador.java</file>
-            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/DAO/CompraDAO.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/usuario.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaVentas.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Modelo/Venta.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaPrincipal.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaInicioSesion.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaUsuarios.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Vista/VistaClientes.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/Controlador/UsuarioControlador.java</file>
+            <file>file:/C:/Users/Maryi%20Lazo/Documents/FerreteriaMVC2025/src/DAO/UsuarioDAO.java</file>
         </group>
     </open-files>
 </project-private>

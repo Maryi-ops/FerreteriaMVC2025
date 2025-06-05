@@ -5,18 +5,18 @@ package Modelo;
  *
  * @author JLG
  */
-public class Usuario {
+public class usuario {
     private int idUsuario;
     private String usuario;
     private String contrasena;
     
-     public Usuario(int idUsuario, String usuario, String contrasena) {
+     public usuario(int idUsuario, String usuario, String contrasena) {
         this.idUsuario = idUsuario;
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
 
-      public Usuario() {
+      public usuario() {
     }
      
     public int getIdUsuario() {
